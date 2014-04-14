@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0BA92060-DFF9-4802-B315-0589245B1020}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>car1</RootNamespace>
+    <AssemblyName>car1</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>car1.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>car1.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeFluent.Runtime">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFluent.Runtime.Web">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\SoftFluent\CodeFluent\Modeler\CodeFluent.Runtime.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Address.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="AddressCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Branch.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="BranchCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Car.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CarCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CarGroup.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CarGroupCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CarOptions.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CarRepair.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CarRepairCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="City.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CityCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Class1.vb" />
+    <Compile Include="Coverage.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CoverageCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Customer.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="CustomerCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="GroupUpgrade.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="GroupUpgradeCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Inventory.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="InventoryCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="InventoryDetail.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="InventoryDetailCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="NameOnly.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="NewCar.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="NewCarCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Offer.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="OfferCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="PayType.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="RentalAgreement.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="RentalAgreementCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="State.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="StateCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Truck.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="TruckCollection.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="VehicleStatus.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\BitsServer.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="Web\HttpHandler.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+    <Compile Include="_cf_rt.vb">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="car1.en-US.ResX">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </EmbeddedResource>
+    <EmbeddedResource Include="car1.fr-FR.ResX">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </EmbeddedResource>
+    <EmbeddedResource Include="car1.ResX">
+      <CodeFluentProducer>4e1467ebe509c6ca2a873c7386f804c6</CodeFluentProducer>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
