@@ -1,0 +1,348 @@
+﻿<cf:project defaultNamespace="car1" xmlns:cf="http://www.softfluent.com/codefluent/2005/1" xmlns:cfx="http://www.softfluent.com/codefluent/modeler/2008/1" xmlns:cfps="http://www.softfluent.com/codefluent/producers.sqlserver/2005/1" xmlns:cfom="http://www.softfluent.com/codefluent/producers.model/2005/1" defaultKeyPropertyTypeName="int" defaultConnectionString="Integrated Security=true;Database=cfentities01;Server=GIOVANA-PC\SQLEXPRESS" createDefaultMethodForms="true" createDefaultApplication="false">
+  <cf:import path="Default.Surface.cfp" />
+  <Customer namespace="car1" categoryPath="/Customer">
+    <Id />
+    <EmailAddress collectionKey="true" />
+    <Password typeName="password" />
+    <FirstName />
+    <LastName />
+    <FullName set="false" persistent="false" />
+    <BirthdayDate typeName="datetime" />
+    <LoyaltyProgramMember typeName="bool" />
+    <LicenseNo unique="true" />
+    <HasPreAccidents typeName="bool" />
+    <Age persistent="false" typeName="int" />
+    <Address typeName="{0}.Address" />
+    <Rentals typeName="{0}.RentalAgreementCollection" dataMember="true" />
+    <PaymentType usePersistenceDefaultValue="false" typeName="{0}.PayType" />
+    <cf:method name="CheckCredentials" body="loadone(EmailAddress, Password) where EmailAddress = @EmailAddress And Password = @Password">
+      <cf:parameter nullable="false" name="Password" />
+    </cf:method>
+    <cf:method name="LoadByWashingtonState" body="loadone(Address) where Address.City.State.Name Like 'Washington'" />
+    <cf:snippet language="CSharp"><![CDATA[
+    private void OnGetFullName()
+      {
+        _fullName = FirstName + " " + LastName;
+      }
+
+      private void OnGetAge()
+      {
+        System.DateTime now = System.DateTime.Now;
+        System.TimeSpan age = now.Subtract(BirthdayDate);
+        _age = age.Days / 365;
+      }
+]]></cf:snippet>
+    <cf:snippet language="VisualBasic"><![CDATA[
+    Private Sub OnGetFullName()
+        _fullName = FirstName + " " + LastName
+      End Sub
+
+      Private Sub OnGetAge()
+        Dim now As System.DateTime = System.DateTime.Now
+        Dim age As System.TimeSpan = now.Subtract(BirthdayDate)
+        _age = age.Days / 365
+	  End Sub
+]]></cf:snippet>
+  </Customer>
+  <Address setType="List" namespace="car1" categoryPath="/Customer">
+    <Id />
+    <Line1 />
+    <Line2 />
+    <City typeName="{0}.City" />
+    <Zip />
+    <Country />
+    <Customer typeName="{0}.Customer">
+      <cf:renderer name="CustomerRenderer" />
+    </Customer>
+    <cf:view name="MyView">
+      <Line1 />
+      <City>
+        <cf:message cultureName="fr-FR">Ville</cf:message>
+        <cf:message cultureName="en-US">City</cf:message>
+      </City>
+      <Zip>
+        <cf:message cultureName="fr-FR">Code Postal</cf:message>
+        <cf:message cultureName="en-US">Zip code</cf:message>
+      </Zip>
+      <State expression="City.State.Name" />
+      <Country />
+    </cf:view>
+  </Address>
+  <Car createSearchAllMethod="true" namespace="car1" categoryPath="/Vehicle">
+    <Id key="true" collectionKey="false" />
+    <MinDays typeName="int" collectionKey="false" />
+    <VehicleType collectionKey="false" />
+    <VehicleStatus usePersistenceDefaultValue="false" nullable="false" typeName="{0}.VehicleStatus" collectionKey="false" />
+    <CarPicture typeName="image" collectionKey="false" />
+    <CarDocument typeName="file" collectionKey="false" />
+    <CarVideo typeName="video" collectionKey="false" />
+    <CarGroup typeName="{0}.CarGroup" collectionKey="false" cloneMode="PublicByKeys" />
+    <Repairs typeName="{0}.CarRepairCollection" collectionKey="false" />
+    <Rentals typeName="{0}.RentalAgreementCollection" collectionKey="false" />
+    <SerialNumber typeName="int" collectionKey="false" unique="false" />
+    <cf:view autoLightweight="true" name="NameOnly">
+      <cf:viewProperty name="MinDays" />
+      <cf:viewProperty name="VehicleType" />
+      <cf:viewProperty name="VehicleStatus" />
+      <cf:viewProperty name="CategoryName" expression="CarGroup.Name" />
+    </cf:view>
+    <cf:snippet language="CSharp"><![CDATA[
+    private void OnAfterSetVehicleStatus(VehicleStatus vehicleStatus)
+      {
+        // TODO: send for example a mail notifying that vehicle status has been changed or launch a workflow
+      }
+
+      private bool OnBeforeSetSerialNumber(int serialNumber)
+      {
+        // TODO: trace in database for example access to the SerialNumber by the current user
+        return true;
+      }
+]]></cf:snippet>
+    <cf:snippet language="VisualBasic"><![CDATA[
+    Private Sub OnAfterSetVehicleStatus(ByVal vehicleStatus As VehicleStatus)
+			' TODO: send for example a mail notifying that vehicle status has been changed or launch a workflow
+		End Sub
+
+		Private Function OnBeforeSetSerialNumber(ByVal serialNumber As Integer) As Boolean
+			' TODO: trace in database for example access to the SerialNumber by the current user
+			Return True
+		End Function
+]]></cf:snippet>
+    <cf:method name="LoadByVT" body="load from vCarNameOnly" />
+    <cf:form name="default">
+      <cf:tab name="default">
+        <cf:zone name="default.0" split="Vertical" splitRatio="47,3002159827214">
+          <cf:zone name="default.0.1">
+            <cf:tab name="default">
+              <cf:zone name="default.0.1.default.0">
+                <cf:tab name="default">
+                  <cf:column />
+                </cf:tab>
+              </cf:zone>
+              <cf:column>
+                <cf:field name="MinDays" sortOrder="1" />
+                <cf:field name="SerialNumber" sortOrder="0" />
+              </cf:column>
+            </cf:tab>
+          </cf:zone>
+          <cf:zone name="default.0.2">
+            <cf:tab name="default">
+              <cf:zone name="default.0.2.default.0">
+                <cf:tab name="default">
+                  <cf:column />
+                </cf:tab>
+              </cf:zone>
+              <cf:column>
+                <cf:field name="VehicleStatus" />
+                <cf:field name="VehicleType" />
+              </cf:column>
+            </cf:tab>
+          </cf:zone>
+        </cf:zone>
+        <cf:column />
+      </cf:tab>
+    </cf:form>
+    <cf:method name="SearchByVT" body="SEARCH(MinDays,SerialNumber,VehicleStatus,VehicleType)" />
+    <cf:message cultureName="en-US">Car</cf:message>
+    <cf:message cultureName="fr-FR">Voiture</cf:message>
+  </Car>
+  <Truck baseTypeName="Car" namespace="car1" categoryPath="/Vehicle">
+    <Weight typeName="float" />
+    <Image typeName="image" />
+  </Truck>
+  <CarRepair namespace="car1" categoryPath="/Vehicle">
+    <Id />
+    <Car typeName="{0}.Car" />
+    <RepairDate typeName="datetime" />
+    <Description />
+  </CarRepair>
+  <RentalAgreement namespace="car1" categoryPath="/Vehicle">
+    <Id />
+    <Customer typeName="{0}.Customer" />
+    <Car typeName="{0}.Car" />
+    <CarOptions usePersistenceDefaultValue="false" typeName="{0}.CarOptions" />
+    <PickupBranch typeName="{0}.Branch" relationPropertyName="PickedUpRentals" />
+    <ActualReturnBranch typeName="{0}.Branch" relationPropertyName="ReturnedRentals" />
+    <ScheduledReturnBranch typeName="{0}.Branch" relationPropertyName="ScheduledRentals" />
+    <PickupDate typeName="datetime" />
+    <ScheduledReturnDate typeName="datetime" />
+    <ActualReturnDate typeName="datetime" />
+    <RequestedCarGroup typeName="{0}.CarGroup" />
+    <ActualCarGroup typeName="{0}.CarGroup" />
+    <RentalAmount typeName="float" />
+    <IsAccepted typeName="bool" />
+    <IsAssigned typeName="bool" />
+    <Offers typeName="{0}.OfferCollection" relationPropertyName="Rentals" />
+    <Coverages typeName="{0}.CoverageCollection" />
+    <CoverageSubtotalPrice typeName="float" />
+    <TotalPrice typeName="float" />
+    <CarGroup typeName="{0}.CarGroup" />
+    <ReturnedDate typeName="datetime" />
+    <Duration typeName="int" />
+    <cf:method name="LoadByReturnDate" body="load(ActualReturnDate) where ActualReturnDate = @ActualReturnDate" />
+    <cf:method name="LoadByPickupDateAndUser" body="load(PickupDate, string firstName) where PickupDate = @PickupDate and Customer.FirstName = @firstName order by Car.CarGroup.Name">
+      <cf:message cultureName="en-US">Load by pickup date and first name</cf:message>
+      <cf:message cultureName="fr-FR">Charger par date de prise en charge et prénom</cf:message>
+    </cf:method>
+    <cf:snippet language="CSharp"><![CDATA[
+    private void OnGetCarGroup()
+      {
+		  _carGroup = (ActualCarGroup != null) ? ActualCarGroup : RequestedCarGroup;
+      }
+
+      private void OnGetReturnedDate()
+      {
+	      _returnedDate = (ActualReturnDate != System.DateTime.MinValue) ? ActualReturnDate : ScheduledReturnDate;
+      }
+
+      private void OnGetDuration()
+      {
+		  _duration = (ReturnedDate - PickupDate).Days;
+      }
+]]></cf:snippet>
+    <cf:snippet language="VisualBasic"><![CDATA[
+    Private Sub OnGetCarGroup()
+		  _carGroup = IIf(Not ActualCarGroup Is Nothing, ActualCarGroup, RequestedCarGroup)
+      End Sub
+
+      Private Sub OnGetReturnedDate()
+	      _returnedDate = IIf(ActualReturnDate <> System.DateTime.MinValue, ActualReturnDate, ScheduledReturnDate)
+      End Sub
+
+      Private Sub OnGetDuration()
+		  _duration = (ReturnedDate - PickupDate).Days
+      End Sub
+]]></cf:snippet>
+    <cf:method name="AgeCheck" body="rule(Customer)" returnTypeName="int" typeName="CodeFluent.Runtime.Rules.ILog.Method, CodeFluent.Runtime.Rules.ILog">
+      <cf:setting name="RuleSetTypeName" typeName="System.String" cultureName="pt-BR" value="CarRentalBizProj, CarRentalBizProj" />
+    </cf:method>
+  </RentalAgreement>
+  <Offer namespace="car1" categoryPath="/Vehicle">
+    <Id />
+    <Name />
+    <CarGroupUpgrade typeName="{0}.CarGroup" />
+    <Rentals typeName="{0}.RentalAgreementCollection" relationPropertyName="Offers" />
+    <Discount typeName="float" />
+  </Offer>
+  <Branch namespace="car1" categoryPath="/Vehicle">
+    <Id />
+    <Name collectionKey="true" />
+    <Line1 />
+    <Line2 />
+    <Zip />
+    <City typeName="{0}.City" />
+    <PickedUpRentals typeName="{0}.RentalAgreementCollection" relationPropertyName="PickupBranch" />
+    <ReturnedRentals typeName="{0}.RentalAgreementCollection" relationPropertyName="ActualReturnBranch" />
+    <ScheduledRentals typeName="{0}.RentalAgreementCollection" relationPropertyName="ScheduledReturnBranch" />
+  </Branch>
+  <Inventory namespace="car1" categoryPath="/Vehicle">
+    <Id />
+    <InventoryDate typeName="datetime" />
+    <ContactFullName />
+    <ContactEmail typeName="email" />
+    <InventoryDetails typeName="{0}.InventoryDetailCollection" />
+    <cf:method name="LoadByDate" body="load(InventoryDate) where InventoryDate = @InventoryDate" />
+  </Inventory>
+  <InventoryDetail setType="List" namespace="car1" categoryPath="/Vehicle">
+    <CarGroup key="true" typeName="{0}.CarGroup" />
+    <Branch key="true" typeName="{0}.Branch" />
+    <Inventory key="true" typeName="{0}.Inventory" />
+    <CarCount typeName="int" />
+  </InventoryDetail>
+  <CarGroup namespace="car1" categoryPath="/Vehicle">
+    <Id />
+    <Name collectionKey="true" />
+    <Category />
+    <WeeklyRate typeName="decimal" />
+    <DailyRate typeName="decimal" />
+    <Upgrades typeName="{0}.GroupUpgradeCollection" />
+    <Cars typeName="{0}.CarCollection" />
+  </CarGroup>
+  <GroupUpgrade namespace="car1" categoryPath="/Vehicle">
+    <Id />
+    <CarGroup typeName="{0}.CarGroup" />
+    <Priority typeName="int" />
+  </GroupUpgrade>
+  <Coverage namespace="car1" categoryPath="/Vehicle">
+    <Id />
+    <Code />
+    <Name />
+  </Coverage>
+  <State namespace="car1" categoryPath="/Referential">
+    <Id />
+    <Name collectionKey="true" />
+    <Cities typeName="{0}.CityCollection" />
+  </State>
+  <City namespace="car1" categoryPath="/Referential">
+    <Id />
+    <State typeName="{0}.State" />
+    <Name collectionKey="true" />
+    <Branches typeName="{0}.BranchCollection" />
+  </City>
+  <PayTypeEnum namespace="car1" categoryPath="/car1">
+    <Cash />
+    <CreditCard />
+    <Check />
+  </PayTypeEnum>
+  <CarOptionsEnum multivalue="true" namespace="car1" categoryPath="/car1">
+    <GPS />
+    <CD />
+    <BabySeat />
+  </CarOptionsEnum>
+  <VehicleStatusEnum namespace="car1" categoryPath="/car1">
+    <Available default="true">
+      <cf:message cultureName="fr-FR">Disponible</cf:message>
+      <cf:message cultureName="en-US">Available</cf:message>
+    </Available>
+    <Rented>
+      <cf:message cultureName="fr-FR">Louée</cf:message>
+      <cf:message cultureName="en-US">Rented</cf:message>
+    </Rented>
+    <Reparation>
+      <cf:message cultureName="fr-FR">En réparation</cf:message>
+      <cf:message cultureName="en-US">Being repaired</cf:message>
+    </Reparation>
+    <Broken>
+      <cf:message cultureName="fr-FR">Endommagée</cf:message>
+      <cf:message cultureName="en-US">Broken</cf:message>
+    </Broken>
+    <Service>
+      <cf:message cultureName="fr-FR">En révision</cf:message>
+      <cf:message cultureName="en-US">In service</cf:message>
+    </Service>
+  </VehicleStatusEnum>
+  <cf:producer name="SQL Server Producer" typeName="CodeFluent.Producers.SqlServer.SqlServerProducer, CodeFluent.Producers.SqlServer">
+    <cf:configuration connectionString="Integrated Security=true;Database=cfentities01;Server=GIOVANA-PC\SQLEXPRESS" produceViews="true" targetVersion="Sql2014" targetDirectory="..\car1.Persistence" cfx:targetProjectLayout="UpdateItems, DontRemove" cfx:targetProject="..\car1.Persistence\car1.Persistence.sqlproj" />
+  </cf:producer>
+  <cf:producer name="BOM Producer" typeName="CodeFluent.Producers.CodeDom.CodeDomProducer, CodeFluent.Producers.CodeDom, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1bb6d7cccf1045ec">
+    <cf:configuration compileWithVisualStudio="true" targetDirectory="..\car1" codeDomProviderTypeName="VisualBasic" cfx:targetProject="..\car1\car1.vbproj" cfx:targetProjectLayout="Update" />
+  </cf:producer>
+  <cf:entity name="NewCar" createSearchAllMethod="true" namespace="car1" categoryPath="/car1">
+    <cf:property name="id" searchable="false" key="true" />
+    <cf:property name="SerialNumber" typeName="string" />
+    <cf:property name="VehicleType" />
+    <cf:property name="VehicleStatus" typeName="{0}.VehicleStatus" />
+    <cf:instance>
+      <cf:instanceValue name="id">1</cf:instanceValue>
+      <cf:instanceValue name="SerialNumber">2233</cf:instanceValue>
+      <cf:instanceValue name="VehicleType">Ford</cf:instanceValue>
+      <cf:instanceValue name="VehicleStatus">Available</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="1">
+      <cf:instanceValue name="id">2</cf:instanceValue>
+      <cf:instanceValue name="SerialNumber">4422</cf:instanceValue>
+      <cf:instanceValue name="VehicleType">Fiat</cf:instanceValue>
+      <cf:instanceValue name="VehicleStatus">Broken</cf:instanceValue>
+    </cf:instance>
+    <cf:instance sortOrder="2">
+      <cf:instanceValue name="id">3</cf:instanceValue>
+      <cf:instanceValue name="SerialNumber">3321</cf:instanceValue>
+      <cf:instanceValue name="VehicleType">Camaro</cf:instanceValue>
+      <cf:instanceValue name="VehicleStatus">Reparation</cf:instanceValue>
+    </cf:instance>
+    <cf:property name="Desc" />
+    <cf:property name="Val" typeName="double" />
+  </cf:entity>
+  <cf:message cultureName="fr-FR" name="USER_NOT_FOUND">Utilisateur(trice) inconnu(e).</cf:message>
+  <cf:message cultureName="en-US" name="USER_NOT_FOUND">User unknown.</cf:message>
+</cf:project>

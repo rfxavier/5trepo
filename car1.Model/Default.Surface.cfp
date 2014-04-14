@@ -1,0 +1,26 @@
+﻿<cf:project defaultNamespace="Default" partType="Surface" xmlns:cf="http://www.softfluent.com/codefluent/2005/1">
+  <cf:surface name="Default">
+    <cf:selector name="_all" expression="//*" />
+    <shape _type="Namespace" _key="car1" Position="768.479969833626,1144.23202578679" ZIndex="1" />
+    <shape _type="Enumeration" _key="car1.PayType" Position="177.692706212893,70.1955772172162" ZIndex="42" />
+    <shape _type="Enumeration" _key="car1.CarOptions" Position="436.367706212893,70.1955772172162" />
+    <shape _type="Enumeration" _key="car1.VehicleStatus" Position="687.016039546226,71.3118672360486" ZIndex="66" />
+    <shape _type="Entity" _key="car1.Address" Position="946.681039546226,70.1955772172162" ZIndex="60" />
+    <shape _type="Entity" _key="car1.Branch" Position="1182.85937287956,70.1955772172162" ZIndex="61" />
+    <shape _type="Entity" _key="car1.Car" Position="157.711224421476,426.142842813409" ZIndex="73" />
+    <shape _type="Entity" _key="car1.CarGroup" Position="456.661039546226,426.345984581032" ZIndex="56" />
+    <shape _type="Entity" _key="car1.CarRepair" Position="724.739372879559,427.778910550549" ZIndex="14" />
+    <shape _type="Entity" _key="car1.City" Position="991.00437287956,427.778910550549" ZIndex="59" />
+    <shape _type="Entity" _key="car1.Coverage" Position="1244.66937287956,427.778910550549" />
+    <shape _type="Entity" _key="car1.Customer" Position="137.557431339587,947.737540484008" ZIndex="69" />
+    <shape _type="Entity" _key="car1.GroupUpgrade" Position="475.566039546226,885.362243883883" />
+    <shape _type="Entity" _key="car1.Inventory" Position="697.718788167476,884.199495262633" ZIndex="70" />
+    <shape _type="Entity" _key="car1.InventoryDetail" Position="957.74937287956,885.362243883883" />
+    <shape _type="Entity" _key="car1.NewCar" Position="75.8841128111734,220.609635732418" ZIndex="74" />
+    <shape _type="Entity" _key="car1.Offer" Position="1179.38937287956,885.362243883883" />
+    <shape _type="Entity" _key="car1.RentalAgreement" Position="175.221188967268,1429.69808761384" ZIndex="32" />
+    <shape _type="Entity" _key="car1.State" Position="564.842706212892,1362.94557721722" ZIndex="19" />
+    <shape _type="Entity" _key="car1.Truck" Position="857.042706212893,1362.94557721722" />
+    <shape _type="Entity" _key="car1.NameOnly" Position="1004.39333333333,1340.75" />
+  </cf:surface>
+</cf:project>
