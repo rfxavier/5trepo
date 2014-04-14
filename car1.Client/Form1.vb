@@ -34,11 +34,11 @@
         Next
 
 
-        Dim Obj = car1.Car.LoadById(3)
+        'Dim Obj = car1.Car.LoadById(3)
 
-        Obj.SerialNumber = "1337"
-        Obj.CarGroup = car1.CarGroup.Load(1)
-        Obj.Save()
+        'Obj.SerialNumber = "1337"
+        'Obj.CarGroup = car1.CarGroup.Load(1)
+        'Obj.Save()
 
 
         'car1.Car.Delete(car1.Car.LoadById(6))
