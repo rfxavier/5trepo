@@ -16,7 +16,7 @@ Imports CodeFluent.Runtime.Utilities
 
 Namespace car1
     
-    'CodeFluent Entities generated (http://www.softfluent.com). Date: Saturday, 12 April 2014 18:46.
+    'CodeFluent Entities generated (http://www.softfluent.com). Date: Monday, 14 April 2014 09:11.
     'Build:1.0.61214.0769
     <System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0769"),  _
      System.SerializableAttribute(),  _
@@ -714,7 +714,7 @@ Private Event System_Collections_Specialized_INotifyCollectionChanged_Collection
             Return reader
         End Function
         
-        Private Overloads Sub SearchAll(ByVal pageIndex As Integer, ByVal pageSize As Integer, ByVal pageOptions As CodeFluent.Runtime.PageOptions, ByVal reader As System.Data.IDataReader, ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double)
+        Private Overloads Sub SearchAll(ByVal pageIndex As Integer, ByVal pageSize As Integer, ByVal pageOptions As CodeFluent.Runtime.PageOptions, ByVal reader As System.Data.IDataReader, ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double, ByVal price As Double, ByVal color As String)
             If (reader Is Nothing) Then
                 Throw New System.ArgumentNullException("reader")
             End If
@@ -752,7 +752,7 @@ Private Event System_Collections_Specialized_INotifyCollectionChanged_Collection
         End Sub
         
         <System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Shared Function PageSearchAll(ByVal pageIndex As Integer, ByVal pageSize As Integer, ByVal pageOptions As CodeFluent.Runtime.PageOptions, ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double) As car1.NewCarCollection
+        Public Overloads Shared Function PageSearchAll(ByVal pageIndex As Integer, ByVal pageSize As Integer, ByVal pageOptions As CodeFluent.Runtime.PageOptions, ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double, ByVal price As Double, ByVal color As String) As car1.NewCarCollection
             If (pageIndex < 0) Then
                 pageIndex = 0
             End If
@@ -766,11 +766,11 @@ Private Event System_Collections_Specialized_INotifyCollectionChanged_Collection
             Dim ret As car1.NewCarCollection = New car1.NewCarCollection()
             Dim reader As System.Data.IDataReader = Nothing
             Try 
-                reader = car1.NewCarCollection.PageDataSearchAll(pageOptions, serialNumber, vehicleType, vehicleStatus, desc, val)
+                reader = car1.NewCarCollection.PageDataSearchAll(pageOptions, serialNumber, vehicleType, vehicleStatus, desc, val, price, color)
                 If (reader Is Nothing) Then
                     Return ret
                 End If
-                ret.SearchAll(pageIndex, pageSize, pageOptions, reader, serialNumber, vehicleType, vehicleStatus, desc, val)
+                ret.SearchAll(pageIndex, pageSize, pageOptions, reader, serialNumber, vehicleType, vehicleStatus, desc, val, price, color)
             Finally
                 If (Not (reader) Is Nothing) Then
                     reader.Dispose
@@ -781,12 +781,12 @@ Private Event System_Collections_Specialized_INotifyCollectionChanged_Collection
         End Function
         
         <System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Shared Function SearchAll(ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double) As car1.NewCarCollection
-            Dim ret As car1.NewCarCollection = car1.NewCarCollection.PageSearchAll(Integer.MinValue, Integer.MaxValue, Nothing, serialNumber, vehicleType, vehicleStatus, desc, val)
+        Public Overloads Shared Function SearchAll(ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double, ByVal price As Double, ByVal color As String) As car1.NewCarCollection
+            Dim ret As car1.NewCarCollection = car1.NewCarCollection.PageSearchAll(Integer.MinValue, Integer.MaxValue, Nothing, serialNumber, vehicleType, vehicleStatus, desc, val, price, color)
             Return ret
         End Function
         
-        Public Shared Function PageDataSearchAll(ByVal pageOptions As CodeFluent.Runtime.PageOptions, ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double) As System.Data.IDataReader
+        Public Shared Function PageDataSearchAll(ByVal pageOptions As CodeFluent.Runtime.PageOptions, ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double, ByVal price As Double, ByVal color As String) As System.Data.IDataReader
             Dim persistence As CodeFluent.Runtime.CodeFluentPersistence = CodeFluentContext.Get(car1.Constants.car1StoreName).Persistence
             persistence.CreateStoredProcedureCommand(Nothing, "NewCar", "SearchAll")
             persistence.AddParameter("@SerialNumber", serialNumber, CType(Nothing, String))
@@ -794,6 +794,8 @@ Private Event System_Collections_Specialized_INotifyCollectionChanged_Collection
             persistence.AddParameterEnumInt32("@VehicleStatus", vehicleStatus, car1.VehicleStatus.Available)
             persistence.AddParameter("@Desc", desc, CType(Nothing, String))
             persistence.AddParameter("@Val", val, CodeFluentPersistence.DefaultDoubleValue)
+            persistence.AddParameter("@Price", price, CodeFluentPersistence.DefaultDoubleValue)
+            persistence.AddParameter("@Color", color, CType(Nothing, String))
             If (Not (pageOptions) Is Nothing) Then
                 Dim enumerator As System.Collections.IEnumerator = pageOptions.OrderByArguments.GetEnumerator
                 Dim b As Boolean
@@ -811,8 +813,8 @@ Private Event System_Collections_Specialized_INotifyCollectionChanged_Collection
             Return reader
         End Function
         
-        Public Shared Function DataSearchAll(ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double) As System.Data.IDataReader
-            Dim reader As System.Data.IDataReader = car1.NewCarCollection.PageDataSearchAll(Nothing, serialNumber, vehicleType, vehicleStatus, desc, val)
+        Public Shared Function DataSearchAll(ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double, ByVal price As Double, ByVal color As String) As System.Data.IDataReader
+            Dim reader As System.Data.IDataReader = car1.NewCarCollection.PageDataSearchAll(Nothing, serialNumber, vehicleType, vehicleStatus, desc, val, price, color)
             Return reader
         End Function
         
@@ -972,8 +974,8 @@ Private Event System_Collections_Specialized_INotifyCollectionChanged_Collection
         End Function
         
         <System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Shared Function PageSearchAll(ByVal pageIndex As Integer, ByVal pageSize As Integer, ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double) As car1.NewCarCollection
-            Return car1.NewCarCollection.PageSearchAll(pageIndex, pageSize, Nothing, serialNumber, vehicleType, vehicleStatus, desc, val)
+        Public Overloads Shared Function PageSearchAll(ByVal pageIndex As Integer, ByVal pageSize As Integer, ByVal serialNumber As String, ByVal vehicleType As String, ByVal vehicleStatus As car1.VehicleStatus, ByVal desc As String, ByVal val As Double, ByVal price As Double, ByVal color As String) As car1.NewCarCollection
+            Return car1.NewCarCollection.PageSearchAll(pageIndex, pageSize, Nothing, serialNumber, vehicleType, vehicleStatus, desc, val, price, color)
         End Function
         
         <System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, true)>  _

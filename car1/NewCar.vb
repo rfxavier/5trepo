@@ -16,7 +16,7 @@ Imports CodeFluent.Runtime.Utilities
 
 Namespace car1
     
-    'CodeFluent Entities generated (http://www.softfluent.com). Date: Saturday, 12 April 2014 18:46.
+    'CodeFluent Entities generated (http://www.softfluent.com). Date: Monday, 14 April 2014 09:11.
     'Build:1.0.61214.0769
     <System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0769"),  _
      System.SerializableAttribute(),  _
@@ -43,6 +43,10 @@ Namespace car1
         Private _desc As String = CType(Nothing, String)
         
         Private _val As Double = CodeFluentPersistence.DefaultDoubleValue
+        
+        Private _price As Double = CodeFluentPersistence.DefaultDoubleValue
+        
+        Private _color As String = CType(Nothing, String)
         
         Public Sub New()
             MyBase.New
@@ -177,6 +181,32 @@ Namespace car1
                 Me._val = value
                 Me.EntityState = CodeFluent.Runtime.CodeFluentEntityState.Modified
                 Me.OnPropertyChanged(New System.ComponentModel.PropertyChangedEventArgs("Val"))
+            End Set
+        End Property
+        
+        <System.ComponentModel.DefaultValueAttribute(CodeFluentPersistence.DefaultDoubleValue),  _
+         System.Xml.Serialization.XmlElementAttribute(IsNullable:=false, Type:=GetType(Double))>  _
+        Public Property Price() As Double
+            Get
+                Return Me._price
+            End Get
+            Set
+                Me._price = value
+                Me.EntityState = CodeFluent.Runtime.CodeFluentEntityState.Modified
+                Me.OnPropertyChanged(New System.ComponentModel.PropertyChangedEventArgs("Price"))
+            End Set
+        End Property
+        
+        <System.ComponentModel.DefaultValueAttribute(CType(Nothing, String)),  _
+         System.Xml.Serialization.XmlElementAttribute(IsNullable:=true, Type:=GetType(String))>  _
+        Public Property Color() As String
+            Get
+                Return Me._color
+            End Get
+            Set
+                Me._color = value
+                Me.EntityState = CodeFluent.Runtime.CodeFluentEntityState.Modified
+                Me.OnPropertyChanged(New System.ComponentModel.PropertyChangedEventArgs("Color"))
             End Set
         End Property
         
@@ -360,6 +390,8 @@ Namespace car1
                 Me._vehicleStatus = CType(CodeFluentPersistence.GetReaderValueEnum(reader, "NewCar_VehicleStatus", CType(car1.VehicleStatus.Available,car1.VehicleStatus)),car1.VehicleStatus)
                 Me._desc = CodeFluentPersistence.GetReaderValue(reader, "NewCar_Desc", CType(CType(Nothing, String),String))
                 Me._val = CodeFluentPersistence.GetReaderValue(reader, "NewCar_Val", CType(CodeFluentPersistence.DefaultDoubleValue,Double))
+                Me._price = CodeFluentPersistence.GetReaderValue(reader, "NewCar_Price", CType(CodeFluentPersistence.DefaultDoubleValue,Double))
+                Me._color = CodeFluentPersistence.GetReaderValue(reader, "NewCar_Color", CType(CType(Nothing, String),String))
             End If
             If (((options And CodeFluent.Runtime.CodeFluentReloadOptions.RowVersion)  _
                         = 0)  _
@@ -489,6 +521,8 @@ Namespace car1
             persistence.AddParameterEnumInt32("@NewCar_VehicleStatus", Me.VehicleStatus, car1.VehicleStatus.Available)
             persistence.AddParameter("@NewCar_Desc", Me.Desc, CType(Nothing, String))
             persistence.AddParameter("@NewCar_Val", Me.Val, CodeFluentPersistence.DefaultDoubleValue)
+            persistence.AddParameter("@NewCar_Price", Me.Price, CodeFluentPersistence.DefaultDoubleValue)
+            persistence.AddParameter("@NewCar_Color", Me.Color, CType(Nothing, String))
             persistence.AddParameter("@_trackLastWriteUser", persistence.Context.User.Name)
             persistence.AddParameter("@_rowVersion", Me.RowVersion)
             Dim reader As System.Data.IDataReader = Nothing
@@ -575,6 +609,12 @@ Namespace car1
             writer.Write(",")
             writer.Write("Val=")
             writer.Write(Me.Val)
+            writer.Write(",")
+            writer.Write("Price=")
+            writer.Write(Me.Price)
+            writer.Write(",")
+            writer.Write("Color=")
+            writer.Write(Me.Color)
             writer.Write(", EntityState=")
             writer.Write(Me.EntityState)
             writer.Write("]")
@@ -617,20 +657,26 @@ Namespace car1
             If (dict.Contains("id") = true) Then
                 Me.id = CType(ConvertUtilities.ChangeType(dict("id"), GetType(Integer), -1),Integer)
             End If
-            If (dict.Contains("Desc") = true) Then
-                Me.Desc = CType(ConvertUtilities.ChangeType(dict("Desc"), GetType(String), CType(Nothing, String)),String)
-            End If
             If (dict.Contains("Val") = true) Then
                 Me.Val = CType(ConvertUtilities.ChangeType(dict("Val"), GetType(Double), CodeFluentPersistence.DefaultDoubleValue),Double)
             End If
-            If (dict.Contains("VehicleStatus") = true) Then
-                Me.VehicleStatus = CType(ConvertUtilities.ChangeType(dict("VehicleStatus"), GetType(car1.VehicleStatus), car1.VehicleStatus.Available),car1.VehicleStatus)
+            If (dict.Contains("Price") = true) Then
+                Me.Price = CType(ConvertUtilities.ChangeType(dict("Price"), GetType(Double), CodeFluentPersistence.DefaultDoubleValue),Double)
+            End If
+            If (dict.Contains("Color") = true) Then
+                Me.Color = CType(ConvertUtilities.ChangeType(dict("Color"), GetType(String), CType(Nothing, String)),String)
+            End If
+            If (dict.Contains("Desc") = true) Then
+                Me.Desc = CType(ConvertUtilities.ChangeType(dict("Desc"), GetType(String), CType(Nothing, String)),String)
             End If
             If (dict.Contains("SerialNumber") = true) Then
                 Me.SerialNumber = CType(ConvertUtilities.ChangeType(dict("SerialNumber"), GetType(String), CType(Nothing, String)),String)
             End If
             If (dict.Contains("VehicleType") = true) Then
                 Me.VehicleType = CType(ConvertUtilities.ChangeType(dict("VehicleType"), GetType(String), CType(Nothing, String)),String)
+            End If
+            If (dict.Contains("VehicleStatus") = true) Then
+                Me.VehicleStatus = CType(ConvertUtilities.ChangeType(dict("VehicleStatus"), GetType(car1.VehicleStatus), car1.VehicleStatus.Available),car1.VehicleStatus)
             End If
             Me.OnEntityAction(New CodeFluent.Runtime.CodeFluentEntityActionEventArgs(Me, CodeFluent.Runtime.CodeFluentEntityAction.CopyFrom, false, dict))
         End Sub
@@ -640,11 +686,13 @@ Namespace car1
                 Throw New System.ArgumentNullException("newCar")
             End If
             newCar.id = Me.id
-            newCar.Desc = Me.Desc
             newCar.Val = Me.Val
-            newCar.VehicleStatus = Me.VehicleStatus
+            newCar.Price = Me.Price
+            newCar.Color = Me.Color
+            newCar.Desc = Me.Desc
             newCar.SerialNumber = Me.SerialNumber
             newCar.VehicleType = Me.VehicleType
+            newCar.VehicleStatus = Me.VehicleStatus
             Me.OnEntityAction(New CodeFluent.Runtime.CodeFluentEntityActionEventArgs(Me, CodeFluent.Runtime.CodeFluentEntityAction.CopyTo, false, newCar))
         End Sub
         
@@ -653,11 +701,13 @@ Namespace car1
                 Throw New System.ArgumentNullException("dict")
             End If
             dict("id") = Me.id
-            dict("Desc") = Me.Desc
             dict("Val") = Me.Val
-            dict("VehicleStatus") = Me.VehicleStatus
+            dict("Price") = Me.Price
+            dict("Color") = Me.Color
+            dict("Desc") = Me.Desc
             dict("SerialNumber") = Me.SerialNumber
             dict("VehicleType") = Me.VehicleType
+            dict("VehicleStatus") = Me.VehicleStatus
             Me.OnEntityAction(New CodeFluent.Runtime.CodeFluentEntityActionEventArgs(Me, CodeFluent.Runtime.CodeFluentEntityAction.CopyTo, false, dict))
         End Sub
         

@@ -16,7 +16,7 @@ Imports CodeFluent.Runtime.Utilities
 
 Namespace car1
     
-    'CodeFluent Entities generated (http://www.softfluent.com). Date: Saturday, 12 April 2014 18:46.
+    'CodeFluent Entities generated (http://www.softfluent.com). Date: Monday, 14 April 2014 09:11.
     'Build:1.0.61214.0769
     <System.CodeDom.Compiler.GeneratedCodeAttribute("CodeFluent Entities", "1.0.61214.0769"),  _
      System.SerializableAttribute(),  _

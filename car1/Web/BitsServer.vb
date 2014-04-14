@@ -7,7 +7,7 @@
 '     the code is regenerated.
 ' </auto-generated>
 '------------------------------------------------------------------------------
-' CodeFluent Entities generated (http://www.softfluent.com). Date: Saturday, 12 April 2014 18:46. Build: 1.0.61214.0769
+' CodeFluent Entities generated (http://www.softfluent.com). Date: Monday, 14 April 2014 09:11. Build: 1.0.61214.0769
 Namespace car1.Web
 	
 	<System.CodeDom.Compiler.GeneratedCode("CodeFluent Entities", "1.0.01234.05678")> _
